@@ -3,11 +3,18 @@ import os
 
 repo = git.Repo('pythonSecJourney-https')
 repo.remotes.origin.set_url('https://github.com/QuintanilhaDev/pythonSecJourney.git')
-archive = open("pythonSecJourney-https/bla.txt", "r+")
-archive.write('tag:1.0.8')
+
+with open('pythonSecJourney-https/bla.txt', 'r+', encoding='utf-8') as archive:
+    data = archive.readlines()
+
+print(data)
+data[0] = "My line  \n"
+
+with open('pythonSecJourney-https/bla.txt', 'r+', encoding='utf-8') as file:
+    file.writelines(data)
 
 
-def push_changes(url, tag):
+def push_changes():
 
     if repo.is_dirty(untracked_files=True):
         print('*' * 50)
